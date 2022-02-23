@@ -10,29 +10,29 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+     
         ListNode result = new ListNode();
         
         ListNode temp = result;
-        int reminder = 0;
+        int extra = 0;
         while(l1 != null || l2 != null) {
-            int total = 0;
+            int total = extra;
             if(l1 != null && l2 != null)
-                total = l1.val + l2.val;
+                total += l1.val + l2.val;
             else if(l1 != null)
-                total = l1.val;
+                total += l1.val;
             else 
-                total = l2.val;
+                total += l2.val;
             
-            total += reminder;
-            reminder = total / 10;
+            extra = total / 10;
             total %= 10;
             
             temp.val += total;
              
             if((l1 != null && l1.next != null) || (l2 != null && l2.next != null))
                 temp.next = new ListNode();
-            else if(reminder != 0) 
-                temp.next = new ListNode(reminder);
+            else if(extra != 0) 
+                temp.next = new ListNode(extra);
                 
              if(l1 != null)
                 l1 = l1.next;
